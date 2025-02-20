@@ -3,6 +3,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
 from bson import ObjectId
 from typing import List,Optional, Union
+from app.api.category import router as category_api 
+
 
 # MongoDB connection setup
 MONGO_DETAILS = "mongodb+srv://useradmin:ZOq5aUL56Z02sfUk@keepbookserverlessinsta.2zvtn.mongodb.net"  # Update this to your MongoDB URI
@@ -82,3 +84,5 @@ async def get_advertisement(advertisementId: str):
          return {"status": True, "message": "Advertisement found", "data": advertisement}
     else:
         return {"status": False, "message": "Advertisement not found", "data": {}}
+
+app.include_router(category_api,prefix="/api")
